@@ -1,6 +1,6 @@
 Name:		texlive-cstypo
 Version:	41986
-Release:	1
+Release:	2
 Summary:	Czech typography rules enforced through LuaTeX hooks
 Group:		Publishing
 URL:		http://www.ctan.org/tex-archive/macros/latex/contrib/cstypo
