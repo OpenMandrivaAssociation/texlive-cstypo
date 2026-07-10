@@ -1,37 +1,23 @@
-Name:		texlive-cstypo
-Version:	41986
-Release:	2
+%global tl_name cstypo
+%global tl_revision 41986
+
+Name:		texlive-%{tl_name}
+Epoch:		1
+Version:	0.03
+Release:	%{tl_revision}.1
 Summary:	Czech typography rules enforced through LuaTeX hooks
 Group:		Publishing
-URL:		https://www.ctan.org/tex-archive/macros/latex/contrib/cstypo
+URL:		https://www.ctan.org/tex-archive/macros/luatex/generic/cstypo
 License:	mit
-Source0:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/cstypo.r%{version}.tar.xz
-Source1:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/cstypo.doc.r%{version}.tar.xz
+Source0:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/cstypo.r%{tl_revision}.tar.xz
+Source1:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/cstypo.doc.r%{tl_revision}.tar.xz
 BuildArch:	noarch
+BuildSystem:	texlive
 BuildRequires:	texlive-tlpkg
-Requires(pre):	texlive-tlpkg
-Requires(post):	texlive-kpathsea
+%texlive_base_requires
+Provides:	texlive(%{tl_name}) = %{tl_revision}
 
 %description
-This package provides macros that enforce basic Czech
-typography rules through Lua hooks available in LuaTeX.
+This package provides macros that enforce basic Czech typography rules
+through Lua hooks available in LuaTeX.
 
-%prep
-%autosetup -p1 -c -a1
-
-%build
-
-%install
-rm -rf tlpkg
-mkdir -p %{buildroot}%{_texmfdistdir}
-cp -a * %{buildroot}%{_texmfdistdir}
-
-%files
-%{_texmfdistdir}/tex/luatex/cstypo
-%{_texmfdistdir}/tex/lualatex/cstypo
-%doc %{_texmfdistdir}/doc/lualatex/cstypo
-
-%post -p %{_sbindir}/texlive.post
-
-%postun
-[ "$1" -eq 0 ] && %{_sbindir}/texlive.post
